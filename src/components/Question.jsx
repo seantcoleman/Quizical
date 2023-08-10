@@ -1,8 +1,14 @@
 import React from 'react'
 
-const Question = () => {
+const Question = (props) => {
   return (
-    <div>Question 1</div>
+    <div>
+      <p>Question {props.number}</p>
+      <p>{props.category}</p>
+      <p>{props.questionText}</p>
+      <p>{props.correctAnswer}</p>
+      <p>{props.incorrectAnswers}</p>
+    </div>
   )
 }
 
