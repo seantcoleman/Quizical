@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
-import Question from './components/Question'
+import Question from './components/Question.jsx'
 import './App.css'
 
 function App() {
@@ -15,20 +15,17 @@ function App() {
 
   console.log(questions)
 
-  
-
   return (
     <>
       <h1>Quizicle</h1>
         {!game && <button onClick={() => setGame((game) => true)}>
           Start game
         </button>}
+        <Question/>
 
-        <pre>{JSON.stringify(questions, null, 4)}</pre>
+        {game && <pre>{JSON.stringify(questions, null, 4)}</pre>}
     </>
   )
 }
 
 export default App
-
-// 
