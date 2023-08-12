@@ -31,8 +31,7 @@ function App() {
               correctAnswer={questions[0].correct_answer}
               incorrectAnswers={questions[0].incorrect_answers}
             />
-            <Question number="2"/>
-            <Question number="3"/>
+
           </>
         }
     </>
