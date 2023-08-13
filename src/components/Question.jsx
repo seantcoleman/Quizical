@@ -1,5 +1,6 @@
 import React from 'react'
 import {decode} from 'html-entities';
+import { nanoid } from 'nanoid'
 
 const Question = (props) => {
 
@@ -8,18 +9,15 @@ const Question = (props) => {
     array.splice(randomIndex, 0 , item)
     return array;
   }
-  // const allAnswers = insertRandomItem(props.incorrectAnswers, 3)
 
   const allAnswers = insertRandomItem(props.incorrectAnswers, props.correctAnswer)
   console.log(allAnswers)
-  const answerElements = allAnswers.map((item) => <div className="answerOption">{item}</div>)
+  const answerElements = allAnswers.map((item, i) => <button className='answerOption' key={nanoid()}>{item}</button>)
 
   return (
-    <div>
-      <p>Question {props.number}</p>
-      <p> Category: {props.category}</p>
+    <div className='question'>
       <p>{decode(props.questionText)}</p>
-      {answerElements}
+      <div className='optionsContainer'>{answerElements}</div>
     </div>
   )
 }

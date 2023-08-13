@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 import Question from './components/Question.jsx'
-import './App.css'
 
 function App() {
   const [gameStatus, setGame] = useState(false)
@@ -25,13 +24,12 @@ function App() {
         {gameStatus && 
           <>
             <Question
-              number="1"
               category={questions[0].category}
               questionText={questions[0].question}
               correctAnswer={questions[0].correct_answer}
               incorrectAnswers={questions[0].incorrect_answers}
             />
-
+          <button type="submit">Check answers</button>
           </>
         }
     </>
