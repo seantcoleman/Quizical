@@ -1,8 +1,11 @@
 import React from 'react'
 import {decode} from 'html-entities';
 
-
 const Question = (props) => {
+
+  function handleSelected(e) {
+    console.log(e)
+  }
 
   function insertRandomItem(array, item) {
     const randomIndex = Math.floor(Math.random() * (array.length + 1))
@@ -11,7 +14,10 @@ const Question = (props) => {
   }
 
   const allAnswers = insertRandomItem(props.incorrectAnswers, props.correctAnswer)
-  const answerElements = allAnswers.map((item, i) => <button className='answerOption'>{item}</button>)
+  const answerElements = allAnswers.map((item, i) => 
+    <button 
+      key={i} id={i} onClick={handleSelected}className={'answerOption' + (item === props.correctAnswer ? 'correct' : '')}>{item}
+    </button>)
 
   return (
     <div className='question'>

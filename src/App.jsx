@@ -15,13 +15,13 @@ function App() {
 
   console.log(questions)
 
-  let questionElements = questions.map(item => 
+  let questionElements = questions.map((item, index) => 
     <Question 
       category={item.category}
       questionText={item.question}
       correctAnswer={item.correct_answer}
       incorrectAnswers={item.incorrect_answers}
-      key={nanoid()}
+      key={index}
     />)
 
     function checkAnswers() {
@@ -37,14 +37,7 @@ function App() {
 
         {gameStatus && 
           <>
-
             {questionElements}
-            {/* <Question
-              category={questions[0].category}
-              questionText={questions[0].question}
-              correctAnswer={questions[0].correct_answer}
-              incorrectAnswers={questions[0].incorrect_answers}
-            /> */}
           <button onClick={checkAnswers}>Check answers</button>
           </>
         }
