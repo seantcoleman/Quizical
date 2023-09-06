@@ -1,27 +1,30 @@
 import React from 'react'
 import {decode} from 'html-entities';
+import {nanoid} from 'nanoid'
 
 const Question = (props) => {
 
-  function handleSelected(e) {
-    console.log(e)
-  }
+  let answers = props.question.answers
 
-  function insertRandomItem(array, item) {
-    const randomIndex = Math.floor(Math.random() * (array.length + 1))
-    array.splice(randomIndex, 0 , item)
-    return array;
-  }
-
-  const allAnswers = insertRandomItem(props.incorrectAnswers, props.correctAnswer)
-  const answerElements = allAnswers.map((item, i) => 
-    <button 
-      key={i} id={i} onClick={handleSelected}className={'answerOption' + (item === props.correctAnswer ? 'correct' : '')}>{item}
-    </button>)
+  const answerElements = answers.map((answer) => {
+    let id = null
+    if (props.question.checked) {
+      if (props.question.correct == answer) {
+        id = 'correct'
+      } else if (props.q.selected === answer){
+        id = 'incorrect'
+      } else {
+        id = 'not-selected'
+      }
+    }
+    return (
+      <button key={nanoid()} id={id}>{answer}</button>
+    )
+  })
 
   return (
     <div className='question'>
-      <p>{decode(props.questionText)}</p>
+      <p>{decode(props.question.questionText)}</p>
       <div className='optionsContainer'>{decode(answerElements)}</div>
     </div>
   )
