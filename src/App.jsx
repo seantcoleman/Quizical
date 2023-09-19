@@ -6,6 +6,8 @@ import Question from './components/Question.jsx'
 function App() {
   const [gameStatus, setGame] = useState(false)
   const [questions, setQuestions] = useState([])
+  const [checked, setChecked] = useState(false)
+  const [correct, setCorrect] = useState(0)
   const [count, setCount] = useState(0)
 
   const shuffleArray = (arr) => arr.sort(() => Math.random() - 0.5)
@@ -45,8 +47,15 @@ function App() {
       key={question.id}
     />)
 
-    function checkAnswers() {
-      console.log('hello')
+    function handleCheck() {
+      setChecked(true)
+      let correct = 0
+      questions.forEach(question => {
+        if (question.selected === question.correct) {
+          correct += 1
+        }
+      })
+      setCorrect(correct)
     }
 
   return (
@@ -57,10 +66,15 @@ function App() {
           Start game
         </button>
         :
-        <div>
-          {questionElements}
-          <button onClick={checkAnswers}>Check answers</button>
-        </div>
+        <>
+          <div>
+            {questionElements}
+            <button onClick={handleCheck}>Check answers</button>
+          </div>
+          <div>
+          {checked && <span className='score'>You scored {correct}/5</span>}
+          </div>
+        </>
         }
     </>
   )
