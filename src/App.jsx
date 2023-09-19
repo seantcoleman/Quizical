@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     async function getQuestion() {
-      const res = await fetch("https://opentdb.com/api.php?amount=3")
+      const res = await fetch("https://opentdb.com/api.php?amount=1")
       const data = await res.json()
       let q = []
       data.results.forEach(question => {
@@ -28,11 +28,19 @@ function App() {
     setGame(x => !x)
   }
 
+  function handleClickAnswer(id, answer) {
+    setQuestions(questions => questions.map(question => {
+      return question.id === id ? {...question, selected: answer} : question
+    }))
+    console.log(questions)
+  }
+
   console.log(questions)
 
   let questionElements = questions.map((question) => 
     <Question
       question={question}
+      handleClickAnswer={handleClickAnswer}
       id={question.id}
       key={question.id}
     />)

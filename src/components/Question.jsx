@@ -18,9 +18,14 @@ const Question = (props) => {
       }
     }
     return (
-      <button key={nanoid()} id={id}>{answer}</button>
+      <button key={nanoid()} id={id} onClick={() => handleClick(answer)} className={answer === props.question.selected ? 'answerOption selected' : 'answerOption'}>{answer}</button>
     )
   })
+
+  function handleClick(answer) {
+    props.handleClickAnswer(props.id, answer)
+
+  }
 
   return (
     <div className='question'>
