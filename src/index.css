@@ -58,6 +58,16 @@ h1 {
   align-items: center;
 }
 
+#correct.answerOption{
+  background-color: #94D7A2;
+  border: 1px solid #94D7A2;
+}
+
+#incorrect.answerOption{
+  background-color: #F8BCBC;
+  border: 1px solid #F8BCBC;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
