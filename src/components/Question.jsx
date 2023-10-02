@@ -11,7 +11,7 @@ const Question = (props) => {
     if (props.question.checked) {
       if (props.question.correct == answer) {
         id = 'correct'
-      } else if (props.q.selected === answer){
+      } else if (props.question.selected === answer){
         id = 'incorrect'
       } else {
         id = 'not-selected'
