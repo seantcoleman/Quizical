@@ -13,8 +13,9 @@ function App() {
   const shuffleArray = (arr) => arr.sort(() => Math.random() - 0.5)
 
   // 1. Restart game - done
-  // 2. Show green/red colors on checked
+  // 2. Show green/red colors on checked - done
   // 3. Select specific categories
+  // 4. Style & design
   
 
   useEffect(() => {

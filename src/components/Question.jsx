@@ -18,7 +18,7 @@ const Question = (props) => {
       }
     }
     return (
-      <button key={nanoid()} id={id} onClick={() => handleClick(answer)}className={answer === props.question.selected ? 'answerOption selected' : 'answerOption'}>{answer}</button>
+      <button key={nanoid()} id={id} onClick={() => handleClick(answer)}className={answer === props.question.selected ? 'answerOption selected' : 'answerOption'}>{decode(answer)}</button>
     )
   })
 
@@ -30,7 +30,7 @@ const Question = (props) => {
   return (
     <div className='question'>
       <p>{decode(props.question.questionText)}</p>
-      <div className='optionsContainer'>{decode(answerElements)}</div>
+      <div className='optionsContainer'>{answerElements}</div>
     </div>
   )
 }
