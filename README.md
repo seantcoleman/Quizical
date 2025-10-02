@@ -13,6 +13,6 @@ A modern trivia quiz app built with React and Vite. Test your knowledge across d
 
 ## Tech Stack
 
-- React 18
+- React
 - Vite
 - Open Trivia Database API
