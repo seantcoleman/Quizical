@@ -1,38 +1,51 @@
-import React from 'react'
-import {decode} from 'html-entities';
-import {nanoid} from 'nanoid'
+import React from "react";
+import { decode } from "html-entities";
+import { nanoid } from "nanoid";
 
 const Question = (props) => {
-
-  let answers = props.question.answers
+  const { question, questionNumber } = props;
+  const answers = question.answers;
 
   const answerElements = answers.map((answer) => {
-    let id = null
-    if (props.question.checked) {
-      if (props.question.correct == answer) {
-        id = 'correct'
-      } else if (props.question.selected === answer){
-        id = 'incorrect'
+    let className = "answer-option";
+
+    if (question.checked) {
+      if (question.correct === answer) {
+        className += " correct";
+      } else if (question.selected === answer) {
+        className += " incorrect";
       } else {
-        id = 'not-selected'
+        className += " not-selected";
       }
+    } else if (answer === question.selected) {
+      className += " selected";
     }
+
     return (
-      <button key={nanoid()} id={id} onClick={() => handleClick(answer)}className={answer === props.question.selected ? 'answerOption selected' : 'answerOption'}>{decode(answer)}</button>
-    )
-  })
+      <button
+        key={nanoid()}
+        onClick={() => handleClick(answer)}
+        className={className}
+        disabled={question.checked}
+      >
+        {decode(answer)}
+      </button>
+    );
+  });
 
   function handleClick(answer) {
-    props.handleClickAnswer(props.id, answer)
-
+    if (!question.checked) {
+      props.handleClickAnswer(props.id, answer);
+    }
   }
 
   return (
-    <div className='question'>
-      <p>{decode(props.question.questionText)}</p>
-      <div className='optionsContainer'>{answerElements}</div>
+    <div className="question">
+      <div className="question-number">Question {questionNumber}</div>
+      <div className="question-text">{decode(question.questionText)}</div>
+      <div className="options-container">{answerElements}</div>
     </div>
-  )
-}
+  );
+};
 
-export default Question
+export default Question;
